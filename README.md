@@ -1,20 +1,31 @@
-# Vibe Landing Page (React)
+# Vibe Landing Page
 
-This repository contains a React-based landing page prototype called **Vibe Landing Page**. It's intentionally small and focused so you can evaluate how the design and structure translate to other frameworks (Vue, Svelte, Solid, Angular, plain HTML, etc.).
+This repository contains a small, focused landing page prototype with two implementations:
+
+- `react/` — a Vite + React implementation that demonstrates component structure and (optional) shader components.
+- `vanilla-js/` — a pure HTML/CSS/JavaScript implementation that reproduces the visuals without a build step.
+
+Both implementations aim to showcase shader-like visuals, animated floating elements, and a responsive hero section so you can evaluate, port, or reuse the design.
+
+---
 
 ## Overview
 
-- Framework: React (Vite)
-- Purpose: Showcase a polished landing page with shaders, animated floating elements, and a responsive hero section.
-- Goal: Provide a clear, simple codebase that can be used as a reference for porting to other front-end frameworks.
+- Purpose: Showcase a polished landing page with shader-inspired visuals, animated floating elements, and a responsive hero section.
+- Goal: Provide small, readable reference implementations (React + Vanilla JS) that are easy to port or adapt.
 
-## Quick Start
+---
 
-Requirements:
+## Quick start
+
+These instructions show how to run either implementation. Use the one that matches your needs.
+
+### Prerequisites (only for the React version and optional tooling)
+
 - Node.js 16+ (or current LTS)
 - npm or yarn
 
-Install and run locally:
+### React (development with Vite)
 
 ```bash
 # from repository root
@@ -23,73 +34,123 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173 (or the URL Vite prints) in your browser.
+Open the URL Vite prints (usually http://localhost:5173).
 
-## Project Structure
+### Vanilla JS (no build step required)
+
+Option A — open directly:
+
+1. Open `vanilla-js/index.html` in a modern browser.
+
+Option B — run a simple static server (recommended for correct relative asset handling):
+
+```bash
+# from repository root
+cd vanilla-js
+# optional: install dev dependency to use the convenience script
+npm install
+npm run start
+```
+
+Or run a Python static server:
+
+```bash
+# Python 3
+python -m http.server 8000
+```
+
+---
+
+## Project structure
+
+Top-level folders:
+
+```
+react/       # Vite + React implementation
+vanilla-js/  # Framework-free HTML/CSS/JS implementation
+```
+
+React implementation (important files):
 
 ```
 react/
-  index.html
-  package.json
-  vite.config.js
-  src/
-    main.jsx        # app bootstrap
-    App.jsx         # top-level app
-    components/
-      Background.jsx
-      FloatingElements.jsx
-      Header.jsx
-      HeroSection.jsx
-      ShaderShowcase.jsx
+   index.html
+   package.json
+   vite.config.js
+   src/
+      main.jsx        # app bootstrap
+      App.jsx         # top-level app
+      components/
+         Background.jsx
+         FloatingElements.jsx
+         Header.jsx
+         HeroSection.jsx
+         ShaderShowcase.jsx
 ```
+
+Vanilla JS implementation (important files):
+
+```
+vanilla-js/
+   index.html
+   styles.css
+   script.js
+   package.json    # optional: small convenience script to run a static server
+   README.md
+```
+
+---
 
 ## What to expect
 
 - A modern, responsive landing layout.
-- A shader-based visual component (`ShaderShowcase`) that may use WebGL / GLSL or canvas APIs.
-- Decorative animated elements (`FloatingElements`) and a `Background` component for depth.
+- Shader-inspired visuals implemented with CSS (vanilla) or specialized React shader components.
+- Decorative animated elements and a `Background` component for depth.
+
+---
 
 ## Porting notes — translating to other frameworks
 
-This project was designed to make porting straightforward. Notes and suggestions when translating:
+This repository is intentionally structured to make porting straightforward. Key guidance:
 
-1. Component structure
-   - Keep the same component responsibilities: `Header`, `HeroSection`, `ShaderShowcase`, `FloatingElements`, `Background`.
-   - Map React component files to the target framework's single-file components (e.g., `.vue` for Vue, `.svelte` for Svelte).
+- Component responsibilities: keep `Header`, `HeroSection`, `ShaderShowcase`, `FloatingElements`, `Background` as distinct units.
+- Shaders/WebGL: keep shader sources and WebGL setup in small vanilla modules so they can be reused across frameworks.
+- Lifecycle & cleanup: ensure animations and WebGL contexts are cleaned up on unmount.
+- Performance: use requestAnimationFrame and throttle heavy updates; keep performance-sensitive code outside reactive cycles when possible.
+- Styling: map inline/CSS-module styles to your target framework's recommended style system.
 
-2. State & props
-   - The current project keeps state minimal and passes props down. Recreate the same prop-driven interfaces in the target framework.
-   - For more complex shared state, use the framework's store/compose patterns (Vuex/Pinia, Svelte stores, Zustand/MobX equivalents).
+---
 
-3. Styling
-   - If styles are inline or CSS modules, map them to the target framework's recommended pattern (scoped styles in Vue/Svelte, CSS modules in Next.js, etc.).
-   - Keep global layout styles in a shared CSS file to avoid duplication.
+## Testing & validation
 
-4. Effects & lifecycle
-   - React's useEffect maps to `onMounted`/`watch` in Vue and lifecycle hooks in other frameworks. Be careful with cleanup for animation loops and WebGL contexts.
+- Manual: run the chosen implementation and inspect responsiveness and visual fidelity across devices.
+- Automated: none included by default; consider visual regression tests or unit tests for shader logic/utilities.
 
-5. Shaders / WebGL
-   - Shader logic (GLSL sources and WebGL setup) is framework-agnostic. Extract this into a small vanilla JS module and reuse it across frameworks to minimize rewrites.
+---
 
-6. Performance
-   - Use requestAnimationFrame for animations and throttle heavy work.
-   - When porting to frameworks with more reactive overhead (e.g., fine-grained reactive systems), keep heavy animation/update loops in vanilla JS outside the reactive system.
+## Vanilla JS version (summary)
 
-7. Build tooling
-   - Vite makes porting easy — most frameworks support Vite. For frameworks that don't, adapt using the recommended build tools.
+The `vanilla-js/` folder contains a framework-free implementation intended for static hosting or quick demos. It reproduces the visuals using CSS and minimal JS.
 
-## Testing & Validation
+Highlights:
 
-- Manual: Run the dev server and inspect responsiveness and shader rendering.
-- Automated: This project contains no tests by default; consider adding a minimal visual regression test or unit tests for logic-heavy modules.
+- CSS radial gradients and animated backgrounds
+- Parallax, mouse-driven interaction, and dynamic particles
+- Intersection Observer for reveal animations
+
+For full details see `vanilla-js/README.md`.
+
+---
 
 ## Next steps / ideas
 
 - Extract shader utilities into a framework-agnostic package for reuse.
-- Create example ports: `vue/`, `svelte/`, `solid/` directories that mirror the `react/` structure.
-- Add TypeScript variants for stronger portability.
+- Add additional ports (Vue, Svelte, Solid) that mirror the `react/` structure.
+- Provide TypeScript variants and small visual tests.
+
+---
 
 ## License
 
-This project is provided as-is. Add a license file if you plan to publish or share the code publicly.
+This project is provided as-is. Add a LICENSE file if you plan to publish or share the code publicly.
 

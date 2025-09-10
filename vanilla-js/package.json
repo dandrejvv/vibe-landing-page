@@ -1,0 +1,22 @@
+{
+  "name": "vanilla-js-shader-landing",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript recreation of the React shader landing page",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "serve": "npx serve .",
+    "dev": "npx serve . --port 3001"
+  },
+  "keywords": [
+    "vanilla-js",
+    "landing-page",
+    "css-animations",
+    "shader-effects"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

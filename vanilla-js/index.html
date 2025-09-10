@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Shader Experiences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Background -->
+        <div class="background">
+            <div class="mesh-gradient primary"></div>
+            <div class="mesh-gradient secondary"></div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-orb top-right">
+                <div class="dot-orbit"></div>
+            </div>
+            <div class="floating-orb bottom-left">
+                <div class="dot-orbit alt"></div>
+            </div>
+            <div class="glow-orb bottom-right"></div>
+            <div class="line-accent top-left"></div>
+            <div class="line-accent bottom-center"></div>
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">P</div>
+                <span class="logo-text">Colorpanis</span>
+            </div>
+            <nav class="nav">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#docs" class="nav-link">Docs</a>
+                <button class="login-btn">Login</button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="hero-section">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                New Paper Shaders Experience
+            </div>
+            <h1 class="hero-title">
+                <span class="title-light">Beautiful</span>
+                <span class="title-gradient">Shader</span>
+                <br>
+                <span class="title-light">Experiences</span>
+            </h1>
+            <p class="hero-description">
+                Create stunning visual experiences with our advanced shader technology. Interactive lighting,
+                smooth animations, and beautiful effects that respond to your every move.
+            </p>
+            <div class="cta-buttons">
+                <button class="cta-primary">Get Started</button>
+                <button class="cta-secondary">Pricing</button>
+            </div>
+        </main>
+
+        <!-- Shader Showcase -->
+        <section class="shader-showcase">
+            <div class="showcase-header">
+                <h2 class="showcase-title">Shader Variants</h2>
+                <p class="showcase-description">
+                    Explore different shader configurations and effects available in the library
+                </p>
+            </div>
+            <div class="showcase-grid">
+                <div class="shader-card">
+                    <h3 class="card-title">Warm Gradient</h3>
+                    <div class="shader-preview warm-gradient"></div>
+                    <p class="card-description">Low distortion with warm color palette</p>
+                </div>
+                <div class="shader-card">
+                    <h3 class="card-title">Orbital Dots</h3>
+                    <div class="shader-preview orbital-dots">
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                    </div>
+                    <p class="card-description">Animated particle system with orbit patterns</p>
+                </div>
+                <div class="shader-card">
+                    <h3 class="card-title">Ocean Waves</h3>
+                    <div class="shader-preview ocean-waves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                    <p class="card-description">Flowing wave patterns with oceanic colors</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
